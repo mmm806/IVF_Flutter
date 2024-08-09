@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ivf_project/screens/profile_setup_screen2.dart';
 import 'screens/sign_up_screen.dart';
 import 'screens/profile_setup_prompt_screen.dart';
 import 'screens/position_selection_screen.dart';
@@ -13,13 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // DEBUG 플래그 삭제
+      themeMode: ThemeMode.light, // 항상 밝은 테마 사용
       initialRoute: '/',
       routes: {
         '/': (context) => SignUpScreen(),
         '/profilePrompt': (context) => ProfileSetupPromptScreen(),
         '/positionSelection': (context) => PositionSelectionScreen(),
-        '/profileSetup1': (context) => ProfileSetupScreen(),
-        '/profileSetup2': (context) => ProfileSetupScreen2(),
+        '/profileSetup': (context) => ProfileSetupScreen(),
       },
     );
   }

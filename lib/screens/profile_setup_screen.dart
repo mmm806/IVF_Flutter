@@ -72,15 +72,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         hintText: '닉네임을 입력하세요.',
                         hintStyle: TextStyle(
                           color: Colors.grey,
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 28.0),
-                      ),
-                      style: TextStyle(
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
                       ),
                     ),
                   ),
@@ -95,14 +91,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   SizedBox(height: 10.0),
                   Padding(
                     padding: const EdgeInsets.only(right: 240), // 원하는 여백 조정
-                    child: Text(
-                      '아베퍼정보',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
-                      ),
-                    ),
+                    child: Text('아베퍼정보', style: TextStyle(fontSize: 15)),
                   ),
+
                   SizedBox(height: 15.0),
                   SizedBox(
                     width: 320.0, // 원하는 가로 길이로 조정
@@ -113,15 +104,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 14.0, // 힌트 텍스트의 크기를 줄임
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 16.0),
-                      ),
-                      style: TextStyle(
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
                       ),
                     ),
                   ),
@@ -135,28 +122,19 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 14.0,
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 16.0),
                       ),
-                      items: ['가천대학교', '건국대학교', '동덕여자대학교', '삼육대학교','서울과학기술대학교']
+                      items: ['학교1', '학교2', '학교3']
                           .map((school) => DropdownMenuItem(
                         value: school,
-                        child: Text(
-                          school,
-                          style: TextStyle(
-                            fontFamily: 'SEOLLEIM', // 폰트 적용
-                          ),
-                        ),
+                        child: Text(school),
                       ))
                           .toList(),
                       onChanged: (value) {},
-                      style: TextStyle(
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
-                      ),
                     ),
                   ),
                   SizedBox(height: 10.0),
@@ -169,15 +147,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 14.0,
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                      ),
-                      style: TextStyle(
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
                       ),
                     ),
                   ),
@@ -191,28 +165,19 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 14.0,
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 16.0),
                       ),
-                      items: ['맴버', '리더', '학사']
+                      items: ['직책1', '직책2', '직책3']
                           .map((position) => DropdownMenuItem(
                         value: position,
-                        child: Text(
-                          position,
-                          style: TextStyle(
-                            fontFamily: 'SEOLLEIM', // 폰트 적용
-                          ),
-                        ),
+                        child: Text(position),
                       ))
                           .toList(),
                       onChanged: (value) {},
-                      style: TextStyle(
-                        fontFamily: 'SEOLLEIM', // 폰트 적용
-                      ),
                     ),
                   ),
                   SizedBox(height: 10.0),
@@ -233,10 +198,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                           Expanded(
                             child: Text(
                               '개인정보 수집에 동의합니다',
-                              style: TextStyle(
-                                fontSize: 12, // 텍스트 크기를 작게 설정
-                                fontFamily: 'SEOLLEIM', // 폰트 적용
-                              ),
+                              style: TextStyle(fontSize: 12), // 텍스트 크기를 작게 설정
                             ),
                           ),
                         ],
@@ -263,9 +225,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white, // 텍스트 색상을 흰색으로 설정
-                          fontFamily: 'SEOLLEIM', // 폰트 적용
                         ),
                       ),
+
                     ),
                   ),
                 ],

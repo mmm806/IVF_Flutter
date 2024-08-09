@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ivf_project/screens/profile_setup_screen2.dart';
 import 'screens/sign_up_screen.dart';
 import 'screens/profile_setup_prompt_screen.dart';
 import 'screens/position_selection_screen.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => SignUpScreen(),
         '/profilePrompt': (context) => ProfileSetupPromptScreen(),
         '/positionSelection': (context) => PositionSelectionScreen(),
-        '/profileSetup': (context) => ProfileSetupScreen(),
+        '/profileSetup1': (context) => ProfileSetupScreen(),
+        '/profileSetup2': (context) => ProfileSetupScreen2(),
       },
     );
   }

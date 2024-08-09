@@ -12,13 +12,13 @@ class PositionSelectionScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/profileSetup');
+                Navigator.pushNamed(context, '/profileSetup1');
               },
               child: Text('학생'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/profileSetup');
+                Navigator.pushNamed(context, '/profileSetup2');
               },
               child: Text('간사'),
             ),

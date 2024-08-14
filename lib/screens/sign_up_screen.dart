@@ -1,35 +1,32 @@
-// 회원가입 및 로그인 화면
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    _checkKakaoLogin(context); // 앱 실행 시 기존 토큰 체크
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          //좌우 여백-> padding 위젯 추가
-          padding: const EdgeInsets.symmetric(horizontal: 30.0), // 왼쪽과 오른쪽 여백 50px 추가
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch, // 자식 위젯을 좌우로 늘림
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 100), // 상하 여백
+              SizedBox(height: 200),
               Image.asset(
                 'assets/app_icon.png',
-                height: 90   ,
+                height: 90,
               ),
-              //카카오 소셜로그인
-              SizedBox(height: 100),
+              SizedBox(height: 200),
               ElevatedButton(
-                onPressed: () {
-                  // 버튼 클릭 시 동작 정의
-                  Navigator.pushNamed(context, '/profilePrompt');
-                },
+                onPressed: () => _handleKakaoLogin(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFEE500), // 버튼 배경색
-                  foregroundColor: Colors.black, // 버튼 텍스트 색깔
-                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 16.0), // 수평 패딩 설정
+                  backgroundColor: Color(0xFFFEE500),
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 13.0),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12), // 버튼 모서리 반경
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 child: Row(
@@ -38,37 +35,83 @@ class SignUpScreen extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/kakao_symbol.png',
-                      height: 24.0, // 심볼의 높이 설정
-                      width: 24.0, // 심볼의 너비 설정
+                      height: 24.0,
+                      width: 24.0,
                     ),
-                    SizedBox(width: 5.0), // 이미지와 텍스트 사이 간격
+                    SizedBox(width: 5.0),
                     Text(
-                      '카카오 계정으로 로그인하기',
+                      '카카오로 3초만에 시작하기',
                       style: TextStyle(
-                        fontSize: 16.0, // 글자 크기 설정
+                        fontSize: 14.0,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 200),
-              TextButton(
+              SizedBox(height: 20),
+              ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/positionSelection');
+                  Navigator.pushNamed(context, '/profilePrompt');
                 },
-                style: TextButton.styleFrom(
-                  foregroundColor: Color(0xFF908C8C), // 텍스트 색깔 변경
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFF5F4F4),
+                  foregroundColor: Color(0xFF52544C),
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 13.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: Text('회원가입 없이 둘러보기',
+                child: Text(
+                  '회원가입 없이 둘러보기',
                   style: TextStyle(
-                    fontSize: 16.0, // 글자 크기 설정
-                    fontFamily: 'SEOLLEIM',
-                  ),),
+                    fontSize: 14.0,
+                  ),
+                ),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _checkKakaoLogin(BuildContext context) async {
+    try {
+      // 기존에 로그인한 사용자의 토큰이 있는지 확인
+      if (await AuthApi.instance.hasToken()) {
+        // 토큰이 유효한지 검사
+        bool isValid = await UserApi.instance.accessTokenInfo() != null;
+        if (isValid) {
+          // 유효한 토큰이 있는 경우, 로그인 절차를 생략하고 다음 화면으로 이동
+          Navigator.pushReplacementNamed(context, '/profilePrompt');
+          return;
+        }
+      }
+    } catch (e) {
+      print('토큰 유효성 검사 실패: $e');
+    }
+  }
+
+  Future<void> _handleKakaoLogin(BuildContext context) async {
+    try {
+      if (await isKakaoTalkInstalled()) {
+        try {
+          // 카카오톡 설치되어 있으면 카카오톡으로 로그인 시도
+          await UserApi.instance.loginWithKakaoTalk();
+        } catch (e) {
+          print('카카오톡으로 로그인 실패: $e');
+          // 카카오톡으로 로그인 실패 시 카카오 계정으로 로그인 시도
+          await UserApi.instance.loginWithKakaoAccount();
+        }
+      } else {
+        // 카카오톡 설치 안 되어 있으면 카카오 계정으로 로그인 시도
+        await UserApi.instance.loginWithKakaoAccount();
+      }
+
+      // 로그인 성공 후 다음 화면으로 이동
+      Navigator.pushReplacementNamed(context, '/profilePrompt');
+    } catch (e) {
+      print('카카오 로그인 실패: $e');
+    }
   }
 }

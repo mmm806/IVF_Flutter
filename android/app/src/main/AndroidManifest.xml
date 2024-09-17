@@ -30,6 +30,13 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- 기타 설정 -->
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="9676b91eacc98215fd88dd534e40badc" /> <!-- 실제 네이티브 앱 키로 대체 -->
+        <meta-data
+            android:name="com.kakao.sdk.AppKeyType"
+            android:value="native" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

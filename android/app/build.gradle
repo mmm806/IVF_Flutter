@@ -24,6 +24,15 @@ if (flutterVersionName == null) {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file("E:/Android/.android/debug.keystore") // 실제 경로로 변경
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
     namespace = "com.example.ivf_project"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -49,6 +58,7 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
+            // V1, V2 서명 활성화/비활성화 설정?
         }
     }
 }
